@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block legal/policy pages from crawlers (noindex set in HTML too)
+Disallow: /terms.html
+Disallow: /privacy-policy.html
+Disallow: /cookie-policy.html
+
+Sitemap: https://wolbantravels.com/sitemap.xml

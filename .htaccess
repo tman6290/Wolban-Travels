@@ -1,0 +1,19 @@
+Options -MultiViews
+
+# Redirect old short-let root URLs to their new /short-lets/ location
+Redirect 301 /vintage        https://www.wolbantravels.com/short-lets/vintage
+Redirect 301 /contemporary   https://www.wolbantravels.com/short-lets/contemporary
+Redirect 301 /vintage.html       https://www.wolbantravels.com/short-lets/vintage
+Redirect 301 /contemporary.html  https://www.wolbantravels.com/short-lets/contemporary
+
+RewriteEngine On
+
+# 1. Redirect /page.html to /page (External Redirect for SEO)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+# 2. Map /page internally back to /page.html so the server can find it
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
