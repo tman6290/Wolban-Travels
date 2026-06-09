@@ -42,8 +42,14 @@
   }
   </script>
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/favicon-96x96.png" type="image/png" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#6B3F23" />
 
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,7 +63,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2" />
+  <link rel="stylesheet" href="assets/css/style.css?v=4" />
 </head>
 <body>
 
@@ -176,51 +182,7 @@
     </div>
   </div>
 
-  <!-- Search Bar -->
-  <div class="hero__search" aria-label="Quick search">
-    <div class="search-card" role="search">
-      <div class="search-card__field">
-        <label class="search-card__label" for="searchWhere"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Where To?</label>
-        <input class="search-card__input" id="searchWhere" type="text" placeholder="e.g. Maldives, Santorini…" autocomplete="off" />
-      </div>
-      <div class="search-card__field">
-        <label class="search-card__label" for="searchDate"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Travel Date</label>
-        <input class="search-card__input" id="searchDate" type="date" />
-      </div>
-      <div class="search-card__field">
-        <label class="search-card__label" for="searchTravelers"><i class="fas fa-users" aria-hidden="true"></i> Travelers</label>
-        <input class="search-card__input" id="searchTravelers" type="number" min="1" max="50" placeholder="2 Travelers" />
-      </div>
-      <button class="search-card__btn" onclick="handleSearch()" aria-label="Search holidays">
-        <i class="fas fa-search" aria-hidden="true"></i> Search
-      </button>
-    </div>
-  </div>
 
-</section>
-
-
-<!-- =============================================
-     SEARCH RESULTS (dynamically populated)
-     ============================================= -->
-<section id="searchResults" hidden aria-label="Search results" style="background:var(--light);padding:48px 0 56px;">
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px;">
-      <h2 class="search-results__title" style="font-family:var(--font-heading);font-size:1.75rem;color:var(--primary-dark);margin:0;"></h2>
-      <button onclick="document.getElementById('searchResults').hidden=true" aria-label="Clear search results" style="background:none;border:none;cursor:pointer;color:var(--gray-700);font-size:0.9rem;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--radius-sm);">
-        <i class="fas fa-times" aria-hidden="true"></i> Clear results
-      </button>
-    </div>
-    <div class="packages__grid search-results__grid"></div>
-    <div class="search-results__empty" hidden style="text-align:center;padding:48px 24px;">
-      <i class="fas fa-map-marked-alt" style="font-size:3rem;color:var(--primary-light);margin-bottom:16px;display:block;" aria-hidden="true"></i>
-      <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--primary-dark);margin:0 0 12px;">We don't have that package listed yet</h3>
-      <p style="color:var(--gray-700);max-width:520px;margin:0 auto 28px;line-height:1.7;">Our travel experts can create a completely bespoke itinerary for you. Tell us where you'd like to go — we'll take care of everything else.</p>
-      <a href="contact.html" class="btn btn-primary search-results__enquire-btn">
-        <i class="fas fa-paper-plane" aria-hidden="true"></i> Send a Holiday Enquiry
-      </a>
-    </div>
-  </div>
 </section>
 
 
@@ -758,29 +720,10 @@
 </button>
 
 <!-- Scripts -->
-<script src="assets/js/main.js?v=2" defer></script>
+<script src="assets/js/main.js?v=4" defer></script>
 <script>
   // Year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Search bar redirect to packages page
-  function handleSearch() {
-    var where     = document.getElementById('searchWhere').value.trim();
-    var date      = document.getElementById('searchDate').value;
-    var travelers = document.getElementById('searchTravelers').value;
-    var params    = new URLSearchParams();
-    if (where)     params.set('destination', where);
-    if (date)      params.set('date', date);
-    if (travelers) params.set('travelers', travelers);
-    window.location.href = 'packages.html' + (params.toString() ? '?' + params.toString() : '');
-  }
-
-  // Allow pressing Enter in search inputs
-  document.querySelectorAll('.search-card__input').forEach(function(inp) {
-    inp.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') handleSearch();
-    });
-  });
 </script>
 
 </body>
